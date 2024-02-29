@@ -53,3 +53,32 @@ def remove_drink(id):
     db.session.delete(drink)
     db.session.commit()
     return "", 204
+
+
+@app.route('/drinks/<id>', methods=['PUT'])
+def update_drink(id):
+    registered_drink = Drink.query.get_or_404(id)
+
+    if registered_drink == None:
+        return "", 404
+
+    try:
+        body = request.json
+        drink = DrinkSchema().load(body)
+
+        drink_name = drink.get('name')
+        drink_description = drink.get('description')
+
+        if drink_name is not None:
+            registered_drink.name = drink_name
+
+        if drink_description is not None:
+            registered_drink.description = drink_description
+
+        db.session.commit()
+
+        return DrinkSchema().dump(registered_drink), 200
+    except ValidationError as validation_error:
+        print(validation_error)
+
+        return {'message': 'Invalid payload'}, 400
