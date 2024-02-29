@@ -49,21 +49,31 @@ flask run
 - `GET /drinks`:
   - Description: Retrieve a list of drinks.
   - Parameters: None.
+  - Body: None.
   - Response: JSON array of drinks objects.
 
 - `GET /drinks/:id`:
   - Description: Retrieve a unique drink.
   - Parameters: id.
+  - Body: None.
   - Response: JSON dictionary of a drink.
 
 - `POST /drinks`:
   - Description: Create a new drink.
-  - Parameters: JSON object representing a drink.
+  - Parameters: None.
+  - Body: JSON object representing a drink.
+  - Response: JSON dictionary of the created drink.
+
+- `PUT /drinks/:id`:
+  - Description: Update an existing drink.
+  - Parameters: id.
+  - Body: JSON object representing a drink.
   - Response: JSON dictionary of the created drink.
 
 - `DELETE /drinks/:id`:
   - Description: Delete a drink.
   - Parameters: id.
+  - Body: None.
   - Response: None.
 
 ## Contact
